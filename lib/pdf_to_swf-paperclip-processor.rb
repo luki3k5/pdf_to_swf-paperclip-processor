@@ -16,10 +16,7 @@ module Paperclip
     def make
       src = @file
       dst = Tempfile.new([@basename, @format ? ".#{@format}" : ''])
-      @logger = logger Logger.new(STDOUT)
-      @logger.info "In Method"
-      @logger.info File.expand_path(dst.path) 
-      @logger.info File.expand_path(src.path)
+      puts "In Here"
       begin
         parameters = []
         parameters << @params
