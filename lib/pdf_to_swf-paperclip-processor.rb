@@ -24,7 +24,6 @@ module Paperclip
         parameters << ":dest"
         
         parameters = parameters.flatten.compact.join(" ").strip.squeeze(" ")
-        @logger.info "Test"       
         @logger.info "Source #{File.expand_path(dst.path)}"
         @logger.info "Source" + File.expand_path(src.path)
         success = Paperclip.run("pdf2swf", parameters, :source => "#{File.expand_path(dst.path)}",:dest => File.expand_path(src.path))
