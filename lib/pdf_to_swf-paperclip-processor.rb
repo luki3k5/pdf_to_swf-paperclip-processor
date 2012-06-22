@@ -16,7 +16,7 @@ module Paperclip
     def make
       src = @file
       dst = Tempfile.new([@basename, @format ? ".#{@format}" : ''])
-      log.info "feafaefaef"
+      log.warn "feafaefaef"
       begin
         parameters = []
         parameters << @params
