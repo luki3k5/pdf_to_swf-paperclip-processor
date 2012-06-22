@@ -1,4 +1,5 @@
 require "paperclip"
+require "logger"
 module Paperclip
     class PdfToSwf < Processor
     
@@ -14,9 +15,10 @@ module Paperclip
     end
 
     def make
+      @logger = logger || Logger.new(STDOUT)
+      @logger.info "Test"
       src = @file
       dst = Tempfile.new([@basename, @format ? ".#{@format}" : ''])
-      log.warn "feafaefaef"
       begin
         parameters = []
         parameters << @params
