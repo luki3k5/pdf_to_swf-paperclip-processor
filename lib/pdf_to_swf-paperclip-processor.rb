@@ -22,12 +22,13 @@ module Paperclip
       begin
         parameters = []
         parameters << @params
-        parameters << ":dest"
         parameters << ":source"
+        parameters << ":dest"
         
         parameters = parameters.flatten.compact.join(" ").strip.squeeze(" ")
        
-        success = Paperclip.run("pdf2swf", parameters, :source => "#{File.expand_path(src.path)}",:dest => File.expand_path(dst.path))
+        success = Paperclip.run("pdf2swf", parameters, :source => "#{File.expand_path(dst.path)}",:dest => File.expand_path(src.path))
+        @logger.info success
       rescue Cocaine::CommandLineError => e
         raise PaperclipError, "There was an error converting #{@basename} to swf" + e.inspect
       end
