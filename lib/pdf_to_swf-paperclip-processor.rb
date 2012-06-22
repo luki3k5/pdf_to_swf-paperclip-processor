@@ -15,22 +15,21 @@ module Paperclip
     end
 
     def make
-      @logger = logger || Logger.new(STDOUT)
+      @logger = Logger.new(STDOUT)
       @logger.info "Test"
       src = @file
       dst = Tempfile.new([@basename, @format ? ".#{@format}" : ''])
       begin
         parameters = []
         parameters << @params
-        parameters << ":source"
         parameters << ":dest"
+        parameters << ":source"
         
         parameters = parameters.flatten.compact.join(" ").strip.squeeze(" ")
        
-        success = Paperclip.run("pdf2swf", parameters, :source => "#{File.expand_path(dst.path)}",:dest => File.expand_path(src.path))
-        Paperclip.run("pdf2swf", cmd)
+        success = Paperclip.run("pdf2swf", parameters, :source => "#{File.expand_path(src.path)}",:dest => File.expand_path(dst.path))
       rescue Cocaine::CommandLineError => e
-        raise PaperclipError, "There was an error converting #{@basename} to swf"
+        raise PaperclipError, "There was an error converting #{@basename} to swf" + e.inspect
       end
       dst
     end
