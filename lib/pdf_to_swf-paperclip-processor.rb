@@ -15,7 +15,6 @@ module Paperclip
 
     def make
       @logger = Logger.new(STDOUT)
-      @logger.info "Test"
       src = @file
       dst = Tempfile.new([@basename, @format ? ".#{@format}" : ''])
       begin
@@ -25,7 +24,7 @@ module Paperclip
         parameters << ":dest"
         
         parameters = parameters.flatten.compact.join(" ").strip.squeeze(" ")
-       
+        @logger.info "Test"       
         @logger.info File.expand_path(dst.path)
         @logger.info File.expand_path(src.path)
         success = Paperclip.run("pdf2swf", parameters, :source => "#{File.expand_path(dst.path)}",:dest => File.expand_path(src.path))
