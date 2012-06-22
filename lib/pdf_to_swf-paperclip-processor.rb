@@ -1,5 +1,4 @@
 require "paperclip"
-require "logger"
 module Paperclip
     class PdfToSwf < Processor
     
