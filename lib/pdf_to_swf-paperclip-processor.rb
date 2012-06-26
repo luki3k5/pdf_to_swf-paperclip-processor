@@ -19,7 +19,7 @@ module Paperclip
       temp_dst = Tempfile.new([@basename, "%.swf"])
       @file_name = Pathname(@attachment.path).basename
       @name = @file_name.to_s.split('.')
-      dst = File.new((File.expand_path(Rails.root) + "/public/system/swf_pdfs/" + @name[0] + "%.swf"), "w")
+      dst = File.new((File.expand_path(Rails.root) + "/public/system/swf_pdfs/" + @name[0].downcase + "%.swf"), "w")
       begin
       parameters = []
       parameters << @params
